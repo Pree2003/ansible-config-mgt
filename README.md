@@ -9,3 +9,4 @@ My first step was to relaunch jnkins instance and changing the name from Jenkins
 My next step was to install ansible by first updating the packages using sudo apt update to update packages then sudo apt install ansible to install ansible
 Jenkins and Ansible configuration test.
 Webhook test
+Automatic Jenkins trigger test.
