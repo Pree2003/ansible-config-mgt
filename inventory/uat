@@ -1,0 +1,6 @@
+[uat-webservers]
+172.31.43.209
+172.31.42.66
+
+[uat-webservers:vars]
+ansible_user=ec2-user

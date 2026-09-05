@@ -1,0 +1,38 @@
+---
+# tasks file for webserver
+
+- name: Install Apache
+  become: true
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+
+- name: Install Git
+  become: true
+  ansible.builtin.yum:
+    name: git
+    state: present
+
+- name: Clone Tooling website
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/Pree2003/tooling.git
+    dest: /var/www/html
+    force: yes
+
+- name: Copy html content to one level up
+  become: true
+  ansible.builtin.command:
+    cmd: cp -r /var/www/html/html/ /var/www/
+
+- name: Start service httpd, if not started
+  become: true
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: Remove html directory
+  become: true
+  ansible.builtin.file:
+    path: /var/www/html/html
+    state: absent
