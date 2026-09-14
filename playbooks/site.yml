@@ -1,2 +1,3 @@
 ---
+- import_playbook: ../dynamic-assignments/env-vars.yml
 - import_playbook: ../static-assignments/uat-webservers.yml
