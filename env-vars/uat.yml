@@ -1,0 +1,23 @@
+enable_nginx_lb: true
+enable_apache_lb: false
+load_balancer_is_required: true
+nginx_remove_default_vhost: true
+
+nginx_upstreams:
+  - name: uat_webservers
+    servers:
+      - "172.31.43.209"
+      - "172.31.42.66"
+
+nginx_vhosts:
+  - listen: "80"
+    server_name: "_"
+    filename: "uat-lb.conf"
+    extra_parameters: |
+      location / {
+          proxy_pass http://uat_webservers;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+      }
