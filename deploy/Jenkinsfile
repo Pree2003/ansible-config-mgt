@@ -7,6 +7,12 @@ pipeline {
             choices: ['dev', 'uat'],
             description: 'Select the deployment environment'
         )
+
+        string(
+            name: 'tagging',
+            defaultValue: '',
+            description: 'Ansible tag to run'
+        )
     }
 
     stages {
@@ -29,7 +35,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh "ansible-playbook -i inventory/${inventory} playbooks/site.yml"
+                    sh "ansible-playbook -i inventory/${inventory} playbooks/site.yml --tags ${tagging}"
                 }
             }
         }

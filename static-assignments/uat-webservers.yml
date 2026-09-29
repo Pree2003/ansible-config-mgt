@@ -4,4 +4,6 @@
   become: true
 
   roles:
-    - webserver
+    - role: webserver
+      tags:
+        - webserver
