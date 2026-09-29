@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh "ansible-playbook -i inventory/${inventory} playbooks/site.yml --tags ${tagging}"
+                    sh "ansible-playbook -i inventory/${params.inventory} playbooks/site.yml --tags ${params.tagging}"
                 }
             }
         }
