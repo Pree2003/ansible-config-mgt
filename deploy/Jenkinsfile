@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         choice(
-            name: 'ENVIRONMENT',
+            name: 'inventory',
             choices: ['dev', 'uat'],
             description: 'Select the deployment environment'
         )
@@ -22,6 +22,14 @@ pipeline {
             steps {
                 script {
                     sh 'echo "Testing Stage"'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh "ansible-playbook -i inventory/${inventory} playbooks/site.yml"
                 }
             }
         }

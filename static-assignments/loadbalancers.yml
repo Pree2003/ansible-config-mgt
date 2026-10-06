@@ -1,6 +1,15 @@
 ---
 - hosts: lb
   become: true
+
+  pre_tasks:
+    - name: Stop and disable Apache when Nginx is the load balancer
+      ansible.builtin.service:
+        name: apache2
+        state: stopped
+        enabled: false
+      when: enable_nginx_lb and load_balancer_is_required
+
   roles:
     - { role: nginx, when: enable_nginx_lb and load_balancer_is_required }
     - { role: apache, when: enable_apache_lb and load_balancer_is_required }

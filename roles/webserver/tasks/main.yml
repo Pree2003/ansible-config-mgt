@@ -13,6 +13,12 @@
     name: git
     state: present
 
+- name: Remove default Apache web root
+  become: true
+  ansible.builtin.file:
+    path: /var/www/html
+    state: absent
+
 - name: Clone Tooling website
   become: true
   ansible.builtin.git:

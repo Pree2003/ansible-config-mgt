@@ -1,12 +1,12 @@
 [nfs]
-172.31.43.133 ansible_ssh_user=ec2-user
+172.31.43.133 ansible_ssh_user=ec2-user ansible_ssh_private_key_file=/home/ubuntu/nfsserver.pem
 
 [webservers]
-172.31.46.146 ansible_ssh_user=ec2-user
-172.31.33.41 ansible_ssh_user=ec2-user
+172.31.46.146 ansible_ssh_user=ec2-user ansible_ssh_private_key_file=/home/ubuntu/webserver.pem
+172.31.33.41 ansible_ssh_user=ec2-user ansible_ssh_private_key_file=/home/ubuntu/webserver.pem
 
 [db]
-172.31.32.84 ansible_ssh_user=ec2-user
+172.31.32.84 ansible_ssh_user=ec2-user ansible_ssh_private_key_file=/home/ubuntu/databaseserver.pem
 
 [lb]
-172.31.10.238 ansible_ssh_user=ubuntu
+172.31.10.238 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/nginxlb.pem
